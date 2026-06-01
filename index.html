@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="bn" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="রসুলপুর ইসলাম নিসা মহিলা মাদ্রাসা - ম্যানেজমেন্ট সিস্টেম" />
+  <meta name="theme-color" content="#163d2e" />
+  <title>রসুলপুর ইসলাম নিসা মহিলা মাদ্রাসা</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     LOADING SCREEN
+════════════════════════════════════════ -->
+<div id="loading-screen">
+  <div class="loading-logo">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+    </svg>
+  </div>
+  <div class="loading-text">রসুলপুর ইসলাম নিসা মহিলা মাদ্রাসা</div>
+  <div class="loading-spinner"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     AUTH PAGE
+════════════════════════════════════════ -->
+<div id="auth-page" class="hidden">
+
+  <div class="auth-card">
+
+    <!-- Auth Header -->
+    <div class="auth-header">
+      <div class="auth-logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="auth-title">রসুলপুর ইসলাম নিসা<br/>মহিলা মাদ্রাসা</div>
+      <div class="auth-subtitle">ম্যানেজমেন্ট সিস্টেমে স্বাগতম</div>
+    </div>
+
+    <!-- Auth Body -->
+    <div class="auth-body">
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="login-tab">🔐 অ্যাডমিন লগইন</button>
+        <button class="auth-tab" id="email-tab">📧 ইমেইল লগইন</button>
+      </div>
+
+      <!-- Alert -->
+      <div class="auth-alert hidden" id="auth-alert">
+        <span>⚠️</span>
+        <span id="auth-alert-msg"></span>
+      </div>
+
+      <!-- Admin Login Form -->
+      <form id="admin-login-form" autocomplete="off">
+
+        <div class="form-group">
+          <label class="form-label">অ্যাডমিন ইমেইল</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📧</span>
+            <input
+              type="email"
+              id="admin-email"
+              class="form-input"
+              placeholder="admin@madrasa.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">পাসওয়ার্ড</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input
+              type="password"
+              id="admin-password"
+              class="form-input"
+              placeholder="••••••••"
+              required
+              autocomplete="current-password"
+            />
+            <span class="input-toggle" data-target="admin-password">👁️</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="admin-login-btn">
+          🔐 অ্যাডমিন লগইন
+        </button>
+
+      </form>
+
+      <!-- Email Login Form -->
+      <form id="email-login-form" class="hidden" autocomplete="off">
+
+        <div class="form-group">
+          <label class="form-label">ইমেইল ঠিকানা</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📧</span>
+            <input
+              type="email"
+              id="user-email"
+              class="form-input"
+              placeholder="yourmail@example.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">পাসওয়ার্ড</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input
+              type="password"
+              id="user-password"
+              class="form-input"
+              placeholder="••••••••"
+              required
+              autocomplete="current-password"
+            />
+            <span class="input-toggle" data-target="user-password">👁️</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="email-login-btn">
+          📧 ইমেইল লগইন
+        </button>
+
+      </form>
+
+      <!-- Divider -->
+      <div class="auth-divider">অথবা</div>
+
+      <!-- Google Login -->
+      <button class="btn btn-google" id="google-login-btn">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+        Google দিয়ে লগইন করুন
+      </button>
+
+    </div><!-- /auth-body -->
+
+  </div><!-- /auth-card -->
+
+</div><!-- /auth-page -->
+
+
+<!-- ════════════════════════════════════════
+     APP PAGE
+════════════════════════════════════════ -->
+<div id="app-page" class="hidden">
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+
+    <!-- Brand -->
+    <div class="sidebar-brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="brand-info">
+        <div class="brand-name">রসুলপুর ইসলাম নিসা</div>
+        <div class="brand-sub">মহিলা মাদ্রাসা</div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+
+      <!-- Main -->
+      <div class="nav-section-title">মূল মেনু</div>
+
+      <div class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">ড্যাশবোর্ড</span>
+      </div>
+
+      <!-- Management -->
+      <div class="nav-section-title">ব্যবস্থাপনা</div>
+
+      <div class="nav-item" data-page="students">
+        <span class="nav-icon">👩‍🎓</span>
+        <span class="nav-label">শিক্ষার্থী</span>
+        <span class="nav-badge">0</span>
+      </div>
+
+      <div class="nav-item" data-page="teachers">
+        <span class="nav-icon">👩‍🏫</span>
+        <span class="nav-label">শিক্ষক</span>
+        <span class="nav-badge">0</span>
+      </div>
+
+      <div class="nav-item" data-page="routine">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">রুটিন</span>
+      </div>
+
+      <!-- Tools -->
+      <div class="nav-section-title">টুলস</div>
+
+      <div class="nav-item" data-page="search">
+        <span class="nav-icon">🔍</span>
+        <span class="nav-label">সার্চ সিস্টেম</span>
+      </div>
+
+    </nav>
+
+    <!-- Footer -->
+    <div class="sidebar-footer">
+      <div class="user-profile">
+        <div class="user-avatar" id="user-avatar">A</div>
+        <div class="user-info">
+          <div class="user-name" id="user-name">Admin</div>
+          <div class="user-role" id="user-role">অ্যাডমিন</div>
+        </div>
+      </div>
+      <div class="logout-btn" id="logout-btn">
+        <span>🚪</span>
+        <span>লগআউট</span>
+      </div>
+    </div>
+
+  </aside><!-- /sidebar -->
+
+
+  <!-- ── MAIN CONTENT ── -->
+  <div class="main-content" id="main-content">
+
+    <!-- Header -->
+    <header class="main-header">
+      <div class="header-left">
+        <div class="sidebar-toggle" id="sidebar-toggle">
+          <span>☰</span>
+        </div>
+        <div class="page-title-bar">
+          <h1 id="page-title">📊 ড্যাশবোর্ড</h1>
+        </div>
+      </div>
+
+      <div class="header-search">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="header-search"
+          placeholder="শিক্ষার্থী বা শিক্ষক খুঁজুন..."
+        />
+      </div>
+
+      <div class="header-right">
+        <div class="header-btn">
+          🔔
+          <span class="notif-dot"></span>
+        </div>
+        <div class="user-avatar header-avatar" id="header-avatar"
+          style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary-400),var(--accent-500));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;cursor:pointer;">
+          A
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+
+      <!-- ══════════════════════════════════
+           PAGE: DASHBOARD
+      ══════════════════════════════════ -->
+      <section class="page-section active" id="page-dashboard">
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+
+          <div class="stat-card green">
+            <div class="stat-icon">👩‍🎓</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-students">0</div>
+              <div class="stat-label">মোট শিক্ষার্থী</div>
+              <div class="stat-change up">সক্রিয় শিক্ষার্থী</div>
+            </div>
+          </div>
+
+          <div class="stat-card blue">
+            <div class="stat-icon">👩‍🏫</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-teachers">0</div>
+              <div class="stat-label">মোট শিক্ষক</div>
+              <div class="stat-change up">সক্রিয় শিক্ষক</div>
+            </div>
+          </div>
+
+          <div class="stat-card amber">
+            <div class="stat-icon">🏫</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-classes">0</div>
+              <div class="stat-label">মোট শ্রেণি</div>
+              <div class="stat-change up">চলমান শ্রেণি</div>
+            </div>
+          </div>
+
+          <div class="stat-card purple">
+            <div class="stat-icon">📅</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-routines">0</div>
+              <div class="stat-label">রুটিন এন্ট্রি</div>
+              <div class="stat-change up">মোট পিরিয়ড</div>
+            </div>
+          </div>
+
+        </div><!-- /stats-grid -->
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+
+          <!-- Recent Activity -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <div class="card-title"><span>📋</span> সাম্প্রতিক কার্যক্রম</div>
+            </div>
+            <div class="card-body">
+              <div id="recent-activity">
+                <div class="empty-state" style="padding:24px;">
+                  <div class="empty-icon">📋</div>
+                  <div class="empty-desc">লোড হচ্ছে...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <div class="card-title"><span>⚡</span> দ্রুত অ্যাকসেস</div>
+            </div>
+            <div class="card-body">
+              <div class="quick-links">
+                <div class="quick-link" data-goto="students">
+                  <span class="ql-icon">👩‍🎓</span>
+                  <span class="ql-label">শিক্ষার্থী</span>
+                </div>
+                <div class="quick-link" data-goto="teachers">
+                  <span class="ql-icon">👩‍🏫</span>
+                  <span class="ql-label">শিক্ষক</span>
+                </div>
+                <div class="quick-link" data-goto="routine">
+                  <span class="ql-icon">📅</span>
+                  <span class="ql-label">রুটিন</span>
+                </div>
+                <div class="quick-link" data-goto="search">
+                  <span class="ql-icon">🔍</span>
+                  <span class="ql-label">সার্চ</span>
+                </div>
+              </div>
+
+              <!-- Madrasa Info Card -->
+              <div style="margin-top:20px;padding:16px;background:var(--primary-50);border-radius:var(--radius-md);border:1px solid var(--primary-200);">
+                <div style="font-weight:700;color:var(--primary-700);margin-bottom:8px;">🕌 প্রতিষ্ঠান তথ্য</div>
+                <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:1.8;">
+                  <div>📍 রসুলপুর, বাংলাদেশ</div>
+                  <div>📞 যোগাযোগ: প্রশাসন</div>
+                  <div>🕐 শিক্ষাবর্ষ: ২০২৫</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /dashboard-grid -->
+
+      </section><!-- /page-dashboard -->
+
+
+      <!-- ══════════════════════════════════
+           PAGE: STUDENTS
+      ══════════════════════════════════ -->
+      <section class="page-section" id="page-students">
+
+        <!-- Top Bar -->
+        <div class="page-topbar">
+          <div>
+            <div class="page-heading">
+              👩‍🎓 শিক্ষার্থী ব্যবস্থাপনা
+              <span id="student-count">0</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" id="add-student-btn">
+            ➕ নতুন শিক্ষার্থী
+          </button>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-search">
+            <span class="s-icon">🔍</span>
+            <input type="text" id="student-search" placeholder="নাম, আইডি বা ফোন দিয়ে খুঁজুন..." />
+          </div>
+          <select class="filter-select" id="student-class-filter">
+            <option value="">সব শ্রেণি</option>
+            <option value="১ম শ্রেণি">১ম শ্রেণি</option>
+            <option value="২য় শ্রেণি">২য় শ্রেণি</option>
+            <option value="৩য় শ্রেণি">৩য় শ্রেণি</option>
+            <option value="৪র্থ শ্রেণি">৪র্থ শ্রেণি</option>
+            <option value="৫ম শ্রেণি">৫ম শ্রেণি</option>
+            <option value="৬ষ্ঠ শ্রেণি">৬ষ্ঠ শ্রেণি</option>
+            <option value="৭ম শ্রেণি">৭ম শ্রেণি</option>
+            <option value="৮ম শ্রেণি">৮ম শ্রেণি</option>
+            <option value="৯ম শ্রেণি">৯ম শ্রেণি</option>
+            <option value="১০ম শ্রেণি">১০ম শ্রেণি</option>
+            <option value="আলিম">আলিম</option>
+            <option value="ফাজিল">ফাজিল</option>
+            <option value="কামিল">কামিল</option>
+          </select>
+        </div>
+
+        <!-- Table Card -->
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">📋 শিক্ষার্থীদের তালিকা</div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>শিক্ষার্থী</th>
+                  <th>শ্রেণি / শাখা</th>
+                  <th>রোল</th>
+                  <th>মোবাইল</th>
+                  <th>অবস্থা</th>
+                  <th>অ্যাকশন</th>
+                </tr>
+              </thead>
+              <tbody id="student-table-body">
+                <tr>
+                  <td colspan="7">
+                    <div class="empty-state">
+                      <div class="empty-icon">👩‍🎓</div>
+                      <div class="empty-title">লোড হচ্ছে...</div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-footer">
+            <div class="table-info" id="student-info">মোট ০ জন</div>
+            <div class="pagination" id="student-pagination"></div>
+          </div>
+        </div>
+
+      </section><!-- /page-students -->
+
+
+      <!-- ══════════════════════════════════
+           PAGE: TEACHERS
+      ══════════════════════════════════ -->
+      <section class="page-section" id="page-teachers">
+
+        <!-- Top Bar -->
+        <div class="page-topbar">
+          <div>
+            <div class="page-heading">
+              👩‍🏫 শিক্ষক ব্যবস্থাপনা
+              <span id="teacher-count">0</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" id="add-teacher-btn">
+            ➕ নতুন শিক্ষক
+          </button>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-search">
+            <span class="s-icon">🔍</span>
+            <input type="text" id="teacher-search" placeholder="নাম, পদবি বা ফোন দিয়ে খুঁজুন..." />
+          </div>
+          <select class="filter-select" id="teacher-dept-filter">
+            <option value="">সব বিভাগ</option>
+            <option value="কুরআন বিভাগ">কুরআন বিভাগ</option>
+            <option value="হাদিস বিভাগ">হাদিস বিভাগ</option>
+            <option value="ফিকহ বিভাগ">ফিকহ বিভাগ</option>
+            <option value="আরবি বিভাগ">আরবি বিভাগ</option>
+            <option value="বাংলা বিভাগ">বাংলা বিভাগ</option>
+            <option value="গণিত বিভাগ">গণিত বিভাগ</option>
+            <option value="ইংরেজি বিভাগ">ইংরেজি বিভাগ</option>
+            <option value="সমাজ বিভাগ">সমাজ বিভাগ</option>
+          </select>
+        </div>
+
+        <!-- Table Card -->
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">📋 শিক্ষকদের তালিকা</div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>শিক্ষক</th>
+                  <th>বিভাগ</th>
+                  <th>বিষয়</th>
+                  <th>মোবাইল</th>
+                  <th>অবস্থা</th>
+                  <th>অ্যাকশন</th>
+                </tr>
+              </thead>
+              <tbody id="teacher-table-body">
+                <tr>
+                  <td colspan="7">
+                    <div class="empty-state">
+                      <div class="empty-icon">👩‍🏫</div>
+                      <div class="empty-title">লোড হচ্ছে...</div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-footer">
+            <div class="table-info" id="teacher-info">মোট ০ জন</div>
+            <div class="pagination" id="teacher-pagination"></div>
+          </div>
+        </div>
+
+      </section><!-- /page-teachers -->
+
+
+      <!-- ══════════════════════════════════
+           PAGE: ROUTINE
+      ══════════════════════════════════ -->
+      <section class="page-section" id="page-routine">
+
+        <!-- Top Bar -->
+        <div class="page-topbar">
+          <div>
+            <div class="page-heading">📅 রুটিন ব্যবস্থাপনা</div>
+          </div>
+          <button class="btn btn-primary btn-sm" id="add-routine-btn">
+            ➕ নতুন রুটিন
+          </button>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <select class="filter-select" id="routine-class-filter">
+            <option value="">সব শ্রেণি</option>
+            <option value="১ম শ্রেণি">১ম শ্রেণি</option>
+            <option value="২য় শ্রেণি">২য় শ্রেণি</option>
+            <option value="৩য় শ্রেণি">৩য় শ্রেণি</option>
+            <option value="৪র্থ শ্রেণি">৪র্থ শ্রেণি</option>
+            <option value="৫ম শ্রেণি">৫ম শ্রেণি</option>
+            <option value="৬ষ্ঠ শ্রেণি">৬ষ্ঠ শ্রেণি</option>
+            <option value="৭ম শ্রেণি">৭ম শ্রেণি</option>
+            <option value="৮ম শ্রেণি">৮ম শ্রেণি</option>
+            <option value="৯ম শ্রেণি">৯ম শ্রেণি</option>
+            <option value="১০ম শ্রেণি">১০ম শ্রেণি</option>
+            <option value="আলিম">আলিম</option>
+            <option value="ফাজিল">ফাজিল</option>
+            <option value="কামিল">কামিল</option>
+          </select>
+          <select class="filter-select" id="routine-day-filter">
+            <option value="">সব দিন</option>
+            <option value="শনিবার">শনিবার</option>
+            <option value="রবিবার">রবিবার</option>
+            <option value="সোমবার">সোমবার</option>
+            <option value="মঙ্গলবার">মঙ্গলবার</option>
+            <option value="বুধবার">বুধবার</option>
+            <option value="বৃহস্পতিবার">বৃহস্পতিবার</option>
+          </select>
+        </div>
+
+        <!-- Routine Table Card -->
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">📋 সাপ্তাহিক রুটিন</div>
+          </div>
+          <div class="routine-grid">
+            <table class="routine-table">
+              <thead>
+                <tr>
+                  <th>পিরিয়ড</th>
+                  <th>শনিবার</th>
+                  <th>রবিবার</th>
+                  <th>সোমবার</th>
+                  <th>মঙ্গলবার</th>
+                  <th>বুধবার</th>
+                  <th>বৃহস্পতিবার</th>
+                </tr>
+              </thead>
+              <tbody id="routine-table-body">
+                <tr>
+                  <td colspan="7">
+                    <div class="empty-state">
+                      <div class="empty-icon">📅</div>
+                      <div class="empty-title">লোড হচ্ছে...</div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section><!-- /page-routine -->
+
+
+      <!-- ══════════════════════════════════
+           PAGE: SEARCH
+      ══════════════════════════════════ -->
+      <section class="page-section" id="page-search">
+
+        <div class="page-topbar">
+          <div class="page-heading">🔍 সার্চ সিস্টেম</div>
+        </div>
+
+        <!-- Search Box -->
+        <div class="filter-bar" style="margin-bottom:20px;">
+          <div class="filter-search" style="flex:1;">
+            <span class="s-icon">🔍</span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="শিক্ষার্থী বা শিক্ষকের নাম, আইডি, ফোন নম্বর লিখুন..."
+              style="font-size:var(--font-size-md);"
+            />
+          </div>
+          <button class="btn btn-primary btn-sm" id="search-btn">
+            🔍 খুঁজুন
+          </button>
+        </div>
+
+        <!-- Search Results -->
+        <div id="search-results">
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <div class="empty-title">কিছু খুঁজুন</div>
+            <div class="empty-desc">শিক্ষার্থী, শিক্ষক বা বিষয়ের নাম লিখুন</div>
+          </div>
+        </div>
+
+      </section><!-- /page-search -->
+
+    </main><!-- /page-content -->
+  </div><!-- /main-content -->
+
+</div><!-- /app-page -->
+
+
+<!-- ════════════════════════════════════════
+     MODALS
+════════════════════════════════════════ -->
+
+<!-- ── Student Modal ── -->
+<div class="modal-overlay" id="student-modal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title" id="student-modal-title">➕ নতুন শিক্ষার্থী</div>
+      <div class="modal-close" data-close-modal="student-modal">✕</div>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>শিক্ষার্থীর নাম <span style="color:var(--danger)">*</span></label>
+          <input type="text" class="form-control" id="s-name" placeholder="পূর্ণ নাম লিখুন" />
+        </div>
+
+        <div class="form-group">
+          <label>শিক্ষার্থী আইডি</label>
+          <input type="text" class="form-control" id="s-id" placeholder="যেমন: RM-2025-001" />
+        </div>
+
+        <div class="form-group">
+          <label>শ্রেণি <span style="color:var(--danger)">*</span></label>
+          <select class="form-control" id="s-class">
+            <option value="">-- শ্রেণি নির্বাচন করুন --</option>
+            <option value="১ম শ্রেণি">১ম শ্রেণি</option>
+            <option value="২য় শ্রেণি">২য় শ্রেণি</option>
+            <option value="৩য় শ্রেণি">৩য় শ্রেণি</option>
+            <option value="৪র্থ শ্রেণি">৪র্থ শ্রেণি</option>
+            <option value="৫ম শ্রেণি">৫ম শ্রেণি</option>
+            <option value="৬ষ্ঠ শ্রেণি">৬ষ্ঠ শ্রেণি</option>
+            <option value="৭ম শ্রেণি">৭ম শ্রেণি</option>
+            <option value="৮ম শ্রেণি">৮ম শ্রেণি</option>
+            <option value="৯ম শ্রেণি">৯ম শ্রেণি</option>
+            <option value="১০ম শ্রেণি">১০ম শ্রেণি</option>
+            <option value="আলিম">আলিম</option>
+            <option value="ফাজিল">ফাজিল</option>
+            <option value="কামিল">কামিল</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>শাখা</label>
+          <input type="text" class="form-control" id="s-section" placeholder="যেমন: ক, খ" />
+        </div>
+
+        <div class="form-group">
+          <label>রোল নম্বর</label>
+          <input type="text" class="form-control" id="s-roll" placeholder="রোল নম্বর" />
+        </div>
+
+        <div class="form-group">
+          <label>মোবাইল নম্বর</label>
+          <input type="tel" class="form-control" id="s-phone" placeholder="০১XXXXXXXXX" />
+        </div>
+
+        <div class="form-group">
+          <label>অভিভাবকের নাম</label>
+          <input type="text" class="form-control" id="s-guardian" placeholder="পিতা/মাতার নাম" />
+        </div>
+
+        <div class="form-group">
+          <label>অবস্থা</label>
+          <select class="form-control" id="s-status">
+            <option value="active">সক্রিয়</option>
+            <option value="inactive">নিষ্ক্রিয়</option>
+            <option value="passed">পাস</option>
+            <option value="dropped">বাদ</option>
+          </select>
+        </div>
+
+        <div class="form-group form-full">
+          <label>ঠিকানা</label>
+          <textarea class="form-control" id="s-address" placeholder="সম্পূর্ণ ঠিকানা লিখুন" rows="2"></textarea>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" data-close-modal="student-modal">বাতিল</button>
+      <button class="btn btn-primary btn-sm" id="student-save-btn">💾 সংরক্ষণ করুন</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Teacher Modal ── -->
+<div class="modal-overlay" id="teacher-modal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title" id="teacher-modal-title">➕ নতুন শিক্ষক</div>
+      <div class="modal-close" data-close-modal="teacher-modal">✕</div>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>শিক্ষকের নাম <span style="color:var(--danger)">*</span></label>
+          <input type="text" class="form-control" id="t-name" placeholder="পূর্ণ নাম লিখুন" />
+        </div>
+
+        <div class="form-group">
+          <label>পদবি</label>
+          <input type="text" class="form-control" id="t-designation" placeholder="যেমন: সহকারী মৌলভী" />
+        </div>
+
+        <div class="form-group">
+          <label>বিভাগ</label>
+          <select class="form-control" id="t-dept">
+            <option value="">-- বিভাগ নির্বাচন করুন --</option>
+            <option value="কুরআন বিভাগ">কুরআন বিভাগ</option>
+            <option value="হাদিস বিভাগ">হাদিস বিভাগ</option>
+            <option value="ফিকহ বিভাগ">ফিকহ বিভাগ</option>
+            <option value="আরবি বিভাগ">আরবি বিভাগ</option>
+            <option value="বাংলা বিভাগ">বাংলা বিভাগ</option>
+            <option value="গণিত বিভাগ">গণিত বিভাগ</option>
+            <option value="ইংরেজি বিভাগ">ইংরেজি বিভাগ</option>
+            <option value="সমাজ বিভাগ">সমাজ বিভাগ</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>বিষয়</label>
+          <input type="text" class="form-control" id="t-subject" placeholder="পাঠদান বিষয়" />
+        </div>
+
+        <div class="form-group">
+          <label>মোবাইল নম্বর</label>
+          <input type="tel" class="form-control" id="t-phone" placeholder="০১XXXXXXXXX" />
+        </div>
+
+        <div class="form-group">
+          <label>ইমেইল</label>
+          <input type="email" class="form-control" id="t-email" placeholder="teacher@madrasa.com" />
+        </div>
+
+        <div class="form-group">
+          <label>যোগদানের তারিখ</label>
+          <input type="date" class="form-control" id="t-joining" />
+        </div>
+
+        <div class="form-group">
+          <label>অবস্থা</label>
+          <select class="form-control" id="t-status">
+            <option value="active">সক্রিয়</option>
+            <option value="inactive">নিষ্ক্রিয়</option>
+            <option value="on-leave">ছুটিতে</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" data-close-modal="teacher-modal">বাতিল</button>
+      <button class="btn btn-primary btn-sm" id="teacher-save-btn">💾 সংরক্ষণ করুন</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Routine Modal ── -->
+<div class="modal-overlay" id="routine-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="routine-modal-title">➕ নতুন রুটিন</div>
+      <div class="modal-close" data-close-modal="routine-modal">✕</div>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>শ্রেণি <span style="color:var(--danger)">*</span></label>
+          <select class="form-control" id="r-class">
+            <option value="">-- শ্রেণি নির্বাচন করুন --</option>
+            <option value="১ম শ্রেণি">১ম শ্রেণি</option>
+            <option value="২য় শ্রেণি">২য় শ্রেণি</option>
+            <option value="৩য় শ্রেণি">৩য় শ্রেণি</option>
+            <option value="৪র্থ শ্রেণি">৪র্থ শ্রেণি</option>
+            <option value="৫ম শ্রেণি">৫ম শ্রেণি</option>
+            <option value="৬ষ্ঠ শ্রেণি">৬ষ্ঠ শ্রেণি</option>
+            <option value="৭ম শ্রেণি">৭ম শ্রেণি</option>
+            <option value="৮ম শ্রেণি">৮ম শ্রেণি</option>
+            <option value="৯ম শ্রেণি">৯ম শ্রেণি</option>
+            <option value="১০ম শ্রেণি">১০ম শ্রেণি</option>
+            <option value="আলিম">আলিম</option>
+            <option value="ফাজিল">ফাজিল</option>
+            <option value="কামিল">কামিল</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>দিন <span style="color:var(--danger)">*</span></label>
+          <select class="form-control" id="r-day">
+            <option value="">-- দিন নির্বাচন করুন --</option>
+            <option value="শনিবার">শনিবার</option>
+            <option value="রবিবার">রবিবার</option>
+            <option value="সোমবার">সোমবার</option>
+            <option value="মঙ্গলবার">মঙ্গলবার</option>
+            <option value="বুধবার">বুধবার</option>
+            <option value="বৃহস্পতিবার">বৃহস্পতিবার</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>পিরিয়ড <span style="color:var(--danger)">*</span></label>
+          <select class="form-control" id="r-period">
+            <option value="">-- পিরিয়ড নির্বাচন করুন --</option>
+            <option value="১ম পিরিয়ড">১ম পিরিয়ড</option>
+            <option value="২য় পিরিয়ড">২য় পিরিয়ড</option>
+            <option value="৩য় পিরিয়ড">৩য় পিরিয়ড</option>
+            <option value="৪র্থ পিরিয়ড">৪র্থ পিরিয়ড</option>
+            <option value="৫ম পিরিয়ড">৫ম পিরিয়ড</option>
+            <option value="৬ষ্ঠ পিরিয়ড">৬ষ্ঠ পিরিয়ড</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>সময়</label>
+          <input type="text" class="form-control" id="r-time" placeholder="যেমন: ৮:০০ - ৮:৪৫" />
+        </div>
+
+        <div class="form-group">
+          <label>বিষয় <span style="color:var(--danger)">*</span></label>
+          <input type="text" class="form-control" id="r-subject" placeholder="বিষয়ের নাম" />
+        </div>
+
+        <div class="form-group">
+          <label>শিক্ষক</label>
+          <select class="form-control" id="r-teacher">
+            <option value="">-- শিক্ষক নির্বাচন করুন --</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" data-close-modal="routine-modal">বাতিল</button>
+      <button class="btn btn-primary btn-sm" id="routine-save-btn">💾 সংরক্ষণ করুন</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── View / Detail Modal ── -->
+<div class="modal-overlay" id="view-modal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title" id="view-modal-title">বিবরণ</div>
+      <div class="modal-close" data-close-modal="view-modal">✕</div>
+    </div>
+    <div id="view-content"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" data-close-modal="view-modal">বন্ধ করুন</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Confirm Delete Modal ── -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal modal-sm">
+    <div class="modal-body" style="text-align:center;padding:32px 24px;">
+      <div class="confirm-icon">🗑️</div>
+      <div class="confirm-title">নিশ্চিত করুন</div>
+      <div class="confirm-text">
+        আপনি কি সত্যিই <strong id="confirm-name"></strong> মুছে ফেলতে চান?<br/>
+        এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।
+      </div>
+    </div>
+    <div class="modal-footer" style="justify-content:center;gap:12px;">
+      <button class="btn btn-outline btn-sm" data-close-modal="confirm-modal">বাতিল</button>
+      <button class="btn btn-danger btn-sm" id="confirm-yes-btn">🗑️ হ্যাঁ, মুছুন</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     TOAST CONTAINER
+════════════════════════════════════════ -->
+<div class="toast-container" id="toast-container"></div>
+
+
+<!-- ════════════════════════════════════════
+     FIREBASE SDK (ESM)
+════════════════════════════════════════ -->
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
